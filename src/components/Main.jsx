@@ -1,5 +1,5 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const MainComponent = ({ startExam }) => {
   const navigate = useNavigate();
@@ -8,6 +8,7 @@ const MainComponent = ({ startExam }) => {
     startExam(); // Call the startExam function from props
     navigate('/quiz'); // Navigate to quiz page
   };
+  const { isAuthenticated, user } = useAuth0();
 
   return (
     <div className="flex flex-col items-center bg-gradient-to-b from-blue-50 via-white to-blue-100 text-gray-800">
@@ -30,7 +31,11 @@ const MainComponent = ({ startExam }) => {
       {/* Hero Section */}
       <div className="max-w-4xl text-center py-20 px-4 animate-fadeIn">
         <h1 className="text-5xl font-bold mb-6">
-          Welcome to <span className="text-blue-700">Your Exam Platform</span>
+          Welcome to <span className="text-blue-700"> 
+            {
+              isAuthenticated && <p className='text-red-700'>{user.name}</p>
+            }
+          Your Exam Platform</span>
         </h1>
         <p className="text-lg mb-8">
           An innovative and secure online examination system designed to provide a seamless exam-taking experience.

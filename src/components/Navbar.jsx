@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const ExamMasterNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { loginWithRedirect , isAuthenticated, logout } = useAuth0();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,12 +49,19 @@ const ExamMasterNavbar = () => {
             <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">
               About
             </a>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
-              Sign In
-            </button>
-            <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded">
-              Sign Up
-            </button>
+            
+            {
+              isAuthenticated ? (
+              <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded">
+              Log Out
+              </button>
+               ) : (
+              <button onClick={() => loginWithRedirect()}className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Log In</button>
+            )}
+
+           
+            
+            
           </div>
 
           {/* Mobile Menu Button */}
