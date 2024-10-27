@@ -93,12 +93,20 @@ const ExamMasterNavbar = () => {
               About
             </a>
             <div className="space-y-2">
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">
+              {/* <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">
                 Sign In
               </button>
               <button className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded">
                 Sign Up
+              </button> */}
+              {
+              isAuthenticated ? (
+              <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className="bg-purple-600 hover:bg-purple-700 text-white py-2 rounded">
+              Log Out
               </button>
+               ) : (
+              <button onClick={() => loginWithRedirect()}className="bg-blue-600 hover:bg-blue-700 text-white  py-2 rounded">Log In</button>
+            )}
             </div>
           </div>
         </div>
