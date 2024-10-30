@@ -3,12 +3,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const MainComponent = ({ startExam }) => {
   const navigate = useNavigate();
+  const { isAuthenticated, user } = useAuth0();
 
   const handleGetStarted = () => {
     startExam(); // Call the startExam function from props
     navigate('/quiz'); // Navigate to quiz page
   };
-  const { isAuthenticated, user } = useAuth0();
 
   return (
     <div className="flex flex-col items-center bg-gradient-to-b from-blue-50 via-white to-blue-100 text-gray-800">
@@ -32,21 +32,23 @@ const MainComponent = ({ startExam }) => {
       <div className="max-w-4xl text-center py-20 px-4 animate-fadeIn">
         <h1 className="text-5xl font-bold mb-6">
           Welcome to <span className="text-blue-700"> 
-            {
-              isAuthenticated && <p className='text-red-700'>{user.name}</p>
-            }
+            {isAuthenticated && <p className='text-red-700'>{user.name}</p>}
           Your Exam Platform</span>
         </h1>
         <p className="text-lg mb-8">
           An innovative and secure online examination system designed to provide a seamless exam-taking experience.
           Prepare, take, and review your exams from anywhere, anytime.
         </p>
-        <button 
-          onClick={handleGetStarted}
-          className="bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transform transition-all duration-200 hover:bg-blue-700 hover:scale-105"
-        >
-          Start Exam
-        </button>
+
+        {/* Conditionally render the button based on authentication */}
+        {isAuthenticated && (
+          <button 
+            onClick={handleGetStarted}
+            className="bg-blue-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transform transition-all duration-200 hover:bg-blue-700 hover:scale-105"
+          >
+            Start Exam
+          </button>
+        )}
       </div>
 
       {/* Features Section */}
