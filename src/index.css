@@ -2,36 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes twinkle {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
-  }
-  
-  @keyframes gradient-xy {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  
-  .animate-twinkle {
-    animation: twinkle 3s infinite;
-  }
-  
-  .animate-gradient-xy {
-    animation: gradient-xy 15s ease infinite;
-    background-size: 400% 400%;
-  }
-  
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-  
-  .transform-style-3d {
-    transform-style: preserve-3d;
-  }
