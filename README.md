@@ -23,8 +23,8 @@ An AI-powered examination platform built with the MERN stack, featuring real-tim
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/AvoyBaruah/examination-platform.git
-   cd examination-platform
+   https://github.com/Baruah123/Exam-Master.git
+   cd Exam-Master
    ```
 
 2. Install dependencies:
